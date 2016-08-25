@@ -2,9 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 guid = ->
-  s4 = ->
-    Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
-  s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
+  Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
 
 class ChatView
   constructor: ->
@@ -24,6 +22,8 @@ class ChatView
       type: "GET",
       url: "/refresh",
       success:(data) ->
+        # TODO: Move this to a different view, I don't like the fact that 
+        # I'm changing somehthing that is not in my el.
         $("tbody").first().animate({ scrollTop: $("tbody").first().prop("scrollHeight")}, 1000)
         console.log "Refreshed successfully"
       error:(data) ->
