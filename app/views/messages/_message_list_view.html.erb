@@ -1,4 +1,6 @@
-<tr>
-  <td><%= message.user %></td>
-  <td><%= message.message %></td>
-</tr>
+<% messages.each do |message| %>
+  <tr>
+    <td><%= message.user %></td>
+    <td><%= message.message %></td>
+  </tr>
+<% end %>

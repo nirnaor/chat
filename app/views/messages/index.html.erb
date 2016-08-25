@@ -8,9 +8,7 @@
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
-      <%= render partial: "message_list_view", locals: {message: message} %>
-    <% end %>
+    <%= render partial: "message_list_view", locals: {messages: @messages} %>
   </tbody>
 </table>
 
