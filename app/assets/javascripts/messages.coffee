@@ -6,6 +6,10 @@ guid = ->
     Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
 
+document.scrollDown = ->
+	el = $("tbody").first()
+	el.animate({ scrollTop: el.prop("scrollHeight")}, 1000)
+
 class ChatView
   constructor: ->
     console.log "constructor"
@@ -29,6 +33,8 @@ class ChatView
         console.error "Refreshed failed"
         return false
     })
+		document.scrollDown()
+
 
   _send: (message) ->
     console.log "willl now send" + message
