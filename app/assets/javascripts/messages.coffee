@@ -8,17 +8,31 @@ guid = ->
 
 class ChatView
   constructor: ->
-    id = guid()
-    console.log("Logged in as" + id)
+    @user = guid()
+    console.log("Logged in as" + @user)
 
     @el = document.querySelector(".sendform")
     @el.querySelector(".send").addEventListener("click", => @onClick())
 
+  _send: (message) ->
+    console.log "willl now send" + message
+    $.ajax({
+      type: "POST",
+      url: "/messages",
+      data: { message: {message: message, user: @user} },
+      success:(data) ->
+        console.log "Message saved successfully"
+        console.log data
+        return false
+      error:(data) ->
+        return false
+    })
+
+
    onClick: ->
      message = @el.querySelector(".newmessage").value
      console.log message
-
-
+     @_send message
 
 window.addEventListener("DOMContentLoaded", -> new ChatView())
 
