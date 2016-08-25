@@ -6,10 +6,6 @@ guid = ->
     Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
 
-document.scrollDown = ->
-	el = $("tbody").first()
-	el.animate({ scrollTop: el.prop("scrollHeight")}, 1000)
-
 class ChatView
   constructor: ->
     console.log "constructor"
@@ -28,6 +24,7 @@ class ChatView
       type: "GET",
       url: "/refresh",
       success:(data) ->
+        $("tbody").first().animate({ scrollTop: $("tbody").first().prop("scrollHeight")}, 1000)
         console.log "Refreshed successfully"
       error:(data) ->
         console.error "Refreshed failed"
@@ -53,6 +50,7 @@ class ChatView
 
    onClick: ->
      message = @el.querySelector(".newmessage").value
+     @el.querySelector(".newmessage").value = ""
      console.log message
      @_send message
 
