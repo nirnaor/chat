@@ -6,9 +6,19 @@ guid = ->
     Math.floor((1 + Math.random()) * 0x10000).toString(16).substring 1
   s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
 
-class Chat
+class ChatView
   constructor: ->
     id = guid()
     console.log("Logged in as" + id)
 
-chat = new Chat()
+    @el = document.querySelector(".sendform")
+    @el.querySelector(".send").addEventListener("click", => @onClick())
+
+   onClick: ->
+     message = @el.querySelector(".newmessage").value
+     console.log message
+
+
+
+window.addEventListener("DOMContentLoaded", -> new ChatView())
+
