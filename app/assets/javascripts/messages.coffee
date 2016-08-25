@@ -30,7 +30,6 @@ class ChatView
         console.error "Refreshed failed"
         return false
     })
-		document.scrollDown()
 
 
   _send: (message) ->
