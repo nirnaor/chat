@@ -48,8 +48,10 @@ class ChatView
 
 
    onClick: ->
-     message = @el.querySelector(".newmessage").value
-     @el.querySelector(".newmessage").value = ""
+     messsageInput = @el.querySelector(".newmessage")
+     message = messsageInput.value
+     messsageInput.value = ""
+     messsageInput.focus()
      console.log message
      @_send message
 
