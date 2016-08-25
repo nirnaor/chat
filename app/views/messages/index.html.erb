@@ -9,10 +9,7 @@
 
   <tbody>
     <% @messages.each do |message| %>
-      <tr>
-        <td><%= message.user %></td>
-        <td><%= message.message %></td>
-      </tr>
+      <%= render partial: "message_list_view", locals: {message: message} %>
     <% end %>
   </tbody>
 </table>
