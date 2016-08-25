@@ -7,6 +7,13 @@ class MessagesController < ApplicationController
     @messages = Message.all
   end
 
+  def refresh
+    @messages = Message.where("created_at > ?", 2.seconds.ago)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /messages/1
   # GET /messages/1.json
   def show

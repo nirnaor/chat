@@ -8,11 +8,27 @@ guid = ->
 
 class ChatView
   constructor: ->
+    console.log "constructor"
+    setInterval (=> @_refresh()), 2000
     @user = guid()
     console.log("Logged in as" + @user)
 
     @el = document.querySelector(".sendform")
     @el.querySelector(".send").addEventListener("click", => @onClick())
+        
+
+  _refresh: ->
+    console.log @
+    console.log "will now fetch new messages and append them to view"
+    $.ajax({
+      type: "GET",
+      url: "/refresh",
+      success:(data) ->
+        console.log "Refreshed successfully"
+      error:(data) ->
+        console.error "Refreshed failed"
+        return false
+    })
 
   _send: (message) ->
     console.log "willl now send" + message
